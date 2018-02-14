@@ -54,6 +54,9 @@ func (cov *Coverage) parseProfiles(profiles []*Profile) error {
 	for _, profile := range profiles {
 		cov.parseProfile(profile)
 	}
+	cov.LinesValid = cov.NumLines()
+	cov.LinesCovered = cov.NumLinesWithHits()
+	cov.LineRate = cov.HitRate()
 	return nil
 }
 
