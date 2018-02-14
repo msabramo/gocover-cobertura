@@ -6,14 +6,14 @@ import (
 
 type Coverage struct {
 	XMLName         xml.Name   `xml:"coverage"`
-	LineRate        float32    `xml:"line-rate,attr,omitempty"`
-	BranchRate      float32    `xml:"branch-rate,attr,omitempty"`
+	LineRate        float32    `xml:"line-rate,attr"`
+	BranchRate      float32    `xml:"branch-rate,attr"`
 	Version         string     `xml:"version,attr"`
 	Timestamp       int64      `xml:"timestamp,attr"`
-	LinesCovered    int64      `xml:"lines-covered,attr,omitempty"`
-	LinesValid      int64      `xml:"lines-valid,attr,omitempty"`
-	BranchesCovered int64      `xml:"branches-covered,attr,omitempty"`
-	BranchesValid   int64      `xml:"branches-valid,attr,omitempty"`
+	LinesCovered    int64      `xml:"lines-covered,attr"`
+	LinesValid      int64      `xml:"lines-valid,attr"`
+	BranchesCovered int64      `xml:"branches-covered,attr"`
+	BranchesValid   int64      `xml:"branches-valid,attr"`
 	Complexity      float32    `xml:"complexity,attr,omitempty"`
 	Sources         []*Source  `xml:"sources>source"`
 	Packages        []*Package `xml:"packages>package"`
