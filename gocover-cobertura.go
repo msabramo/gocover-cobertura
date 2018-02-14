@@ -130,6 +130,7 @@ func (v *fileVisitor) method(n *ast.FuncDecl) *Method {
 	startCol := start.Column
 	endLine := end.Line
 	endCol := end.Column
+	numLinesCovered := 0
 	// The blocks are sorted, so we can stop counting as soon as we reach the end of the relevant block.
 	for _, b := range v.profile.Blocks {
 		if b.StartLine > endLine || (b.StartLine == endLine && b.StartCol >= endCol) {
@@ -142,8 +143,12 @@ func (v *fileVisitor) method(n *ast.FuncDecl) *Method {
 		}
 		for i := b.StartLine; i <= b.EndLine; i++ {
 			method.Lines = append(method.Lines, &Line{Number: i, Hits: int64(b.Count)})
+			if b.Count > 0 {
+				numLinesCovered++
+			}
 		}
 	}
+	method.LineRate = float32(numLinesCovered) / float32(len(method.Lines))
 	return method
 }
 
